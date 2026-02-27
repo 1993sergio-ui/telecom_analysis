@@ -1,62 +1,86 @@
-📊 Análisis de Comportamiento del Cliente: ConnectaTel 2024
-Este proyecto realiza un análisis exhaustivo de los patrones de consumo de los usuarios de la empresa de telecomunicaciones ConnectaTel. El objetivo principal es evaluar la rentabilidad de los planes actuales (Surf y Ultimate) y proponer estrategias basadas en datos para mejorar la retención y captación de clientes.
+📊 Análisis de Comportamiento del Cliente: ConnectaTel
+Este repositorio contiene un análisis integral de los patrones de consumo de los clientes de ConnectaTel, una empresa de telecomunicaciones en Latinoamérica. El proyecto abarca desde la limpieza de datos hasta la segmentación estratégica para optimizar la oferta comercial de la compañía.
 
 🎯 Objetivo del Proyecto
-Identificar perfiles de consumo, detectar comportamientos atípicos (outliers) y segmentar a la base de usuarios para generar recomendaciones estratégicas que optimicen la oferta comercial de la empresa.
+Evaluar el comportamiento de los usuarios registrados hasta el año 2024, identificando perfiles de consumo, detectando comportamientos atípicos y proponiendo mejoras en los planes actuales (Surf y Ultimate) para aumentar la retención y rentabilidad.
 
 📂 Datasets Utilizados
-El análisis se basa en tres archivos de datos clave:
+El análisis se basa en tres fuentes de datos principales:
 
-plans.csv: Detalles técnicos de los planes (costos mensuales, límites de minutos/mensajes y tarifas por excedentes).
+plans.csv: Parámetros de los planes (precio base, minutos/mensajes incluidos y costos por excedentes).
 
-users.csv: Información demográfica de los clientes (edad, ciudad, fecha de registro y plan contratado).
+users.csv: Datos demográficos (edad, ciudad, fecha de registro, plan y estado de churn).
 
-usage.csv: Registro detallado de la actividad real (cantidad de llamadas, duración en minutos y mensajes enviados).
+usage.csv: Registro detallado de la actividad real (llamadas, duración y mensajes enviados).
 
 🛠️ Etapas del Análisis
-El proyecto sigue un flujo de trabajo de Ciencia de Datos estándar:
+El flujo de trabajo se divide en las siguientes fases:
 
-Limpieza y Preprocesamiento: Tratamiento de valores nulos, corrección de tipos de datos y manejo de valores centinela (como edades en -999).
+Exploración y Limpieza de Datos:
 
-Análisis Estadístico: Resumen descriptivo de las variables numéricas y categóricas.
+Tratamiento de valores nulos y duplicados.
 
-Visualización de Distribuciones: Uso de histogramas para entender la forma de los datos (minutos, mensajes y edad).
+Saneamiento de la columna age (manejo de valores centinela -999).
 
-Detección de Outliers: Identificación de "Heavy Users" mediante el método del Rango Intercuartílico (IQR) y diagramas de caja (Boxplots).
+Conversión de tipos de datos para análisis temporal.
 
-Segmentación de Clientes: Clasificación de usuarios por nivel de uso (Bajo, Medio, Alto) y por rango etario (Joven, Adulto, Adulto Mayor).
+Análisis Estadístico Descriptivo:
 
-Insights Ejecutivos: Traducción de hallazgos técnicos en recomendaciones de negocio.
+Resumen de métricas clave por usuario y plan.
 
-🚀 Cómo Ejecutar el Proyecto
-Para visualizar y ejecutar este análisis, puedes utilizar Google Colab (recomendado) o un entorno local de Jupyter.
+Análisis de distribución porcentual de la base de clientes.
 
-Opción 1: Google Colab
-Sube el archivo .ipynb a tu Google Drive.
+Visualización de Datos:
 
-Haz clic derecho sobre el archivo y selecciona Abrir con > Google Colaboratory.
+Histogramas de edad y niveles de consumo.
 
-Asegúrate de subir los archivos .csv a la sesión de Colab (icono de carpeta a la izquierda) para que el código pueda leerlos.
+Identificación visual de sesgos en los datos.
 
-Opción 2: Local (Jupyter Notebook)
-Necesitarás tener instalado Python y las siguientes librerías:
+Detección de Outliers:
+
+Uso del método del Rango Intercuartílico (IQR) y BoxPlots para identificar "Heavy Users".
+
+Segmentación de Clientes:
+
+Por Uso: Clasificación en 'Bajo', 'Medio' y 'Alto uso'.
+
+Por Edad: Segmentación en 'Joven', 'Adulto' y 'Adulto Mayor'.
+
+🚀 Cómo ejecutar el proyecto
+Para reproducir este análisis en tu entorno local o en la nube:
+
+Opción A: Google Colab (Recomendado)
+Haz clic en el botón "Open in Colab" (si lo agregas al notebook) o sube el archivo .ipynb directamente.
+
+Sube los archivos .csv a la sección de archivos de la barra lateral izquierda.
+
+Ejecuta las celdas de forma secuencial.
+
+Opción B: Entorno Local
+Clona este repositorio:
 
 Bash
-pip install pandas numpy seaborn matplotlib
-Luego, ejecuta el comando jupyter notebook en tu terminal dentro de la carpeta del proyecto.
+git clone https://github.com/tu-usuario/nombre-del-repo.git
+Instala las librerías necesarias:
+
+Bash
+pip install pandas numpy matplotlib seaborn
+Abre el archivo telecom_analysis.ipynb con Jupyter Notebook o VS Code.
 
 📋 Guía de Reproducción
-Para obtener los mismos resultados presentados en el análisis, sigue este orden:
+Carga: Asegúrate de que los datasets estén en la misma carpeta que el notebook.
 
-Carga de Datos: Asegúrate de que los archivos CSV tengan los nombres correctos mencionados en la sección de Datasets.
+Limpieza: Ejecuta primero las secciones de tratamiento de nulos para evitar errores en los gráficos.
 
-Ejecución Secuencial: Ejecuta las celdas del notebook en orden, desde la importación de librerías hasta las conclusiones.
+Visualización: Los gráficos están configurados con seaborn para una interpretación clara.
 
-Validación de Rutas: Si los archivos están en una carpeta específica, ajusta la ruta en la función pd.read_csv().
+💡 Principales Hallazgos (Insight Ejecutivo)
+Patrones de Consumo: La mayoría de las variables de consumo presentan un sesgo a la derecha, lo que indica que una minoría de usuarios genera la mayor parte de los excedentes.
 
-💡 Recomendaciones del Analista
-Identificación de Oportunidades: El análisis revela que el plan Surf es el mayor generador de ingresos por excedentes debido a sus límites bajos.
+Decisión sobre Outliers: Se mantuvieron los valores extremos en el análisis ya que representan comportamientos de uso reales y críticos para la facturación.
 
-Estrategia: Se recomienda un plan intermedio para evitar la fuga de clientes que exceden constantemente sus límites pero no desean el costo del plan Ultimate.
+Segmentación: Se detectó una oportunidad en los usuarios de "Alto Uso" que actualmente están en el plan Surf, quienes podrían beneficiarse de una migración al plan Ultimate.
 
-Contribuciones: Las sugerencias y comentarios son bienvenidos. Si encuentras un hallazgo interesante, ¡abre un Issue!
+Autor: Sergio Jose Galindo Hamsho
+
+Contacto: www.linkedin.com/in/sergio-galindo-68a7a4383
